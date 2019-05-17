@@ -1,0 +1,21 @@
+.blogContainer {
+  /* border: solid 4px lightgray; */
+  border: 10px solid rgba(122, 115, 115, 0.2);
+  /* border-top: none; */
+  border-radius: 25px;
+  /* min-height: 100%; */
+  /* -webkit-box-shadow: 0 0 10px lightgray; */
+  /* box-shadow: 0 0 10px lightgray; */
+  height: auto;
+  margin-bottom: 3%;
+  padding: 0%;
+  /* align-self: flex-start; */
+}
+.postBtn {
+  background-color: lightgray;
+  color: red;
+}
+
+.postBtn:hover {
+  opacity: 0.8;
+}

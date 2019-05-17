@@ -1,26 +1,75 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Header from "./components/Header";
+import BlogContainer from "./components/BlogContainer";
+import "./index.css";
+import axios from "axios";
+import rootReducer from "./reducers";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { blogs: [] };
+    this.componentDidMount = async () => {
+      let arr = [];
+      try {
+        let response = await axios.get("http://localhost:5000/api/blog");
+        response.data.map(item => {
+          arr.push(item);
+        });
+        this.setState({ blogs: arr });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  }
+  render() {
+    // const store = ;
+
+    return (
+      <Provider store={createStore(rootReducer, { blogs: this.state })}>
+        <div
+          className="App"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            flexWrap: "nowrap"
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <Header />
+          <div
+            style={{
+              display: "flex",
+              height: "100%",
+              flexDirection: "column"
+            }}
+          >
+            <div>
+              <h2 className="col-lg-3 col-sm-12 blogTitle">Example Blog</h2>
+            </div>
+            <div
+              style={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap"
+              }}
+            >
+              <div className="col-lg-8 col-sm-12">
+                <BlogContainer />
+              </div>
+              <div className="col-lg-4 col-sm-12">hello</div>
+            </div>
+          </div>
+        </div>
+      </Provider>
+    );
+  }
 }
 
 export default App;
+
+// https://mdbootstrap.com/img/Photos/Others/img%20(50).jpg
