@@ -21,7 +21,7 @@ class BlogContainer extends React.Component {
     return (
       <div
         className=" col-12 blogContainer"
-        style={{ display: "flex", flexDirection: "column" }}
+        style={{ display: "flex", flexDirection: "column", minHeight: "100%" }}
       >
         <BlogNavBar />
         {this.props.blogs.blogs.length > 0 ? this.renderBlogs() : null}

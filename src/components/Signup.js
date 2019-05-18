@@ -3,12 +3,12 @@ import React from "react";
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { email: "" };
   }
   render() {
     return (
       <div class=" col-12">
-        <h2 className="col-lg-12 blogTitle">Join the blogs</h2>
+        <h2 className="col-lg-12 blogTitle">Join Example Blog</h2>
         <div class="row justify-content-center">
           <div class="col-12 ">
             <form action="mail.php" method="post">
@@ -30,6 +30,9 @@ class Signup extends React.Component {
                         </div>
                       </div>
                       <input
+                        onChange={e =>
+                          this.setState({ [e.target.name]: e.target.value })
+                        }
                         type="email"
                         class="form-control"
                         id="nombre"
@@ -43,7 +46,7 @@ class Signup extends React.Component {
                   <div class="text-center">
                     <input
                       type="submit"
-                      value="Enviar"
+                      value="Subscribe"
                       class="btn btn-info btn-block rounded-0 py-2"
                     />
                   </div>

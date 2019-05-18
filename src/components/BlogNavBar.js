@@ -1,6 +1,19 @@
 import React from "react";
-
+import { connect } from "react-redux";
 const BlogNavBar = props => {
+  console.log("hekl;a", props.blogs);
+  const renderBlogs = () => {
+    return props.blogs.blogs.map((blog, i) => {
+      return (
+        <button
+          key={i}
+          className="form-control col-lg-3 col-md-4 col-sm-12 postBtn"
+        >
+          {blog.title}
+        </button>
+      );
+    });
+  };
   return (
     <div>
       <p style={{ marginBottom: "0%", paddingBottom: "0%" }}>
@@ -38,21 +51,15 @@ const BlogNavBar = props => {
             flexWrap: "wrap"
           }}
         >
-          <button className="form-control col-lg-3 col-md-4 col-sm-12 postBtn">
-            example
-          </button>
-          <button className="form-control col-lg-3 col-md-4 col-sm-12 postBtn">
-            example
-          </button>
-          <button className="form-control col-lg-3 col-md-4 col-sm-12 postBtn">
-            example
-          </button>
-          <button className="form-control col-lg-3 col-md-4 col-sm-12 postBtn">
-            example
-          </button>
+          {renderBlogs()}
         </div>
       </div>
     </div>
   );
 };
-export default BlogNavBar;
+const mapStateToProps = ({ blogs }) => {
+  return {
+    blogs
+  };
+};
+export default connect(mapStateToProps)(BlogNavBar);
