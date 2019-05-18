@@ -12,7 +12,7 @@ class BlogContainer extends React.Component {
     return this.props.blogs.blogs.map((item, i) => {
       return (
         <div key={i}>
-          <IndividualBlog info={item} />
+          <IndividualBlog info={item} index={i} />
         </div>
       );
     });

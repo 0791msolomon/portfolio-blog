@@ -7,7 +7,7 @@ import axios from "axios";
 import rootReducer from "./reducers";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-
+import Signup from "./components/Signup";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -61,7 +61,9 @@ class App extends React.Component {
               <div className="col-lg-8 col-sm-12">
                 <BlogContainer />
               </div>
-              <div className="col-lg-4 col-sm-12">hello</div>
+              <div className="col-lg-4 col-sm-12">
+                <Signup />
+              </div>
             </div>
           </div>
         </div>
