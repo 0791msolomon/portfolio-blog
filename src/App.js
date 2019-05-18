@@ -31,7 +31,7 @@ class App extends React.Component {
     return (
       <Provider store={createStore(rootReducer, { blogs: this.state })}>
         <div
-          className="App"
+          className="   App"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -39,30 +39,33 @@ class App extends React.Component {
             flexWrap: "nowrap"
           }}
         >
+          {" "}
           <Header />
-          <div
-            style={{
-              display: "flex",
-              height: "100%",
-              flexDirection: "column"
-            }}
-          >
-            <div>
-              <h2 className="col-lg-3 col-sm-12 blogTitle">Example Blog</h2>
-            </div>
+          <div className="container" style={{ height: "100%" }}>
             <div
               style={{
-                height: "100%",
                 display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap"
+                height: "100%",
+                flexDirection: "column"
               }}
             >
-              <div className="col-lg-8 col-sm-12">
-                <BlogContainer />
+              <div>
+                <h2 className="col-lg-3 col-sm-12 blogTitle">Example Blog</h2>
               </div>
-              <div className="col-lg-4 col-sm-12">
-                <Signup />
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "wrap"
+                }}
+              >
+                <div className="col-lg-8 col-sm-12">
+                  <BlogContainer />
+                </div>
+                <div className="col-lg-4 col-sm-12">
+                  <Signup />
+                </div>
               </div>
             </div>
           </div>
