@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-
+import "./index.css";
 const IndividualBlog = props => {
   console.log(props.info);
 
@@ -44,6 +44,8 @@ const IndividualBlog = props => {
           {props.info.category ? props.info.category : "Default Category"}
         </h5>
         <h3
+          className="individualTitle"
+          onClick={() => alert(props.info._id)}
           style={{
             alignSelf: "flex-start",
             textAlign: "left",

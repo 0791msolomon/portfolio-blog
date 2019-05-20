@@ -8,6 +8,7 @@ import rootReducer from "./reducers";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import Signup from "./components/Signup";
+import Author from "./components/Author";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -65,6 +66,7 @@ class App extends React.Component {
                 </div>
                 <div className="col-lg-4 col-sm-12">
                   <Signup />
+                  <Author />
                 </div>
               </div>
             </div>

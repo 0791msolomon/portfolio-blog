@@ -31,7 +31,7 @@ const BlogNavBar = props => {
             marginBottom: "0%"
           }}
         >
-          Latest Posts &nbsp;&nbsp;
+          Categories &nbsp;&nbsp;
           <i className="fas fa-bars" />
         </a>
       </p>
