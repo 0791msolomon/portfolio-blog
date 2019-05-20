@@ -12,7 +12,7 @@ import Author from "./components/Author";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./components/Routes";
 import reduxPromise from "redux-promise";
-let baseUrl = process.env.BASE_URL || "http://localhost:5000";
+let baseUrl = process.env.REACT_APP_BASEURL || "http://localhost:5000";
 
 class App extends React.Component {
   constructor(props) {

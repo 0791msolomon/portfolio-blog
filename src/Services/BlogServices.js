@@ -1,5 +1,5 @@
 import axios from "axios";
-let baseUrl = process.env.BASE_URL || "http://localhost:5000";
+let baseUrl = process.env.REACT_APP_BASEURL || "http://localhost:5000";
 
 export const addComment = data => {
   return axios
