@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Header = props => {
   return (
     <nav
@@ -20,22 +20,22 @@ const Header = props => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item  ">
-            <a
+            <Link
               className="nav-link navbar-brand"
               style={{ fontWeight: "bold", color: "white" }}
-              href="#"
+              to="/"
             >
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a
+            <Link
               className="nav-link navbar-brand"
               style={{ fontWeight: "bold", color: "white" }}
-              href="#"
+              to="/about"
             >
               About
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
             <a

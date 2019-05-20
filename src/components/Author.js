@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
 import author from "./photos/author.png";
+import { Link } from "react-router-dom";
 const Author = props => {
   return (
     <div
@@ -16,7 +17,7 @@ const Author = props => {
       <h2 className="col-lg-12 author">Meet the Author</h2>
       <div className="col-12">
         <img
-          style={{ height: "300px", width: "100%" }}
+          style={{ height: "350px", width: "100%" }}
           src={author}
           alt="the author"
         />
@@ -29,7 +30,7 @@ const Author = props => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </small>
-        <a href="#">Read More</a>
+        <Link to="/about">Read More</Link>
       </div>
     </div>
   );

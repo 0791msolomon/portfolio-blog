@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 const BlogNavBar = props => {
-  console.log("hekl;a", props.blogs);
   const renderBlogs = () => {
     return props.blogs.blogs.map((blog, i) => {
       return (

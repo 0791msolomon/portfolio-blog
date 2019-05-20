@@ -6,9 +6,12 @@ import "./index.css";
 import axios from "axios";
 import rootReducer from "./reducers";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import Signup from "./components/Signup";
 import Author from "./components/Author";
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./components/Routes";
+import reduxPromise from "redux-promise";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -30,48 +33,59 @@ class App extends React.Component {
     // const store = ;
 
     return (
-      <Provider store={createStore(rootReducer, { blogs: this.state })}>
-        <div
-          className="   App"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
-            flexWrap: "nowrap"
-          }}
-        >
-          {" "}
-          <Header />
-          <div className="container" style={{ height: "100%" }}>
+      <Provider
+        store={createStore(
+          rootReducer,
+          { blogs: this.state },
+          applyMiddleware(reduxPromise)
+        )}
+      >
+        <BrowserRouter>
+          <div
+            className="   App"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
+              flexWrap: "nowrap"
+            }}
+          >
+            {" "}
+            <Header />
             <div
-              style={{
-                display: "flex",
-                height: "100%",
-                flexDirection: "column"
-              }}
+              style={{ height: "100%", marginLeft: "3%", marginRight: "3%" }}
             >
-              <div>
-                <h2 className="col-lg-3 col-sm-12 blogTitle">Example Blog</h2>
-              </div>
               <div
                 style={{
-                  height: "100%",
                   display: "flex",
-                  flexDirection: "row",
-                  flexWrap: "wrap"
+                  height: "100%",
+                  flexDirection: "column"
                 }}
               >
-                <div className="col-lg-8 col-sm-12">
-                  <BlogContainer />
+                <div>
+                  <h2 className="col-lg-3 col-sm-12 blogTitle">Example Blog</h2>
                 </div>
-                <div className="col-lg-4 col-sm-12">
-                  <Signup />
-                  <Author />
+                <div
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap"
+                  }}
+                >
+                  <div className="col-lg-8 col-sm-12">
+                    {/* <BlogContainer /> */}
+                    <Routes />
+                  </div>
+                  <div className="col-lg-4 col-sm-12">
+                    <Signup />
+                    <Author />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </BrowserRouter>
       </Provider>
     );
   }

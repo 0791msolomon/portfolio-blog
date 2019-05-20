@@ -1,9 +1,10 @@
 import React from "react";
 import moment from "moment";
 import "./index.css";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { selectBlog } from "../actions";
 const IndividualBlog = props => {
-  console.log(props.info);
-
   return (
     <div
       className="col-12"
@@ -43,17 +44,19 @@ const IndividualBlog = props => {
         >
           {props.info.category ? props.info.category : "Default Category"}
         </h5>
-        <h3
-          className="individualTitle"
-          onClick={() => alert(props.info._id)}
-          style={{
-            alignSelf: "flex-start",
-            textAlign: "left",
-            fontFamily: "Optima, sans-serif"
-          }}
-        >
-          {props.info.title}
-        </h3>
+        <Link style={{ color: "black" }} to={`/blog/${props.info._id}`}>
+          <h3
+            onClick={() => props.selectBlog(props.info._id)}
+            className="individualTitle"
+            style={{
+              alignSelf: "flex-start",
+              textAlign: "left",
+              fontFamily: "Optima, sans-serif"
+            }}
+          >
+            {props.info.title}
+          </h3>{" "}
+        </Link>
         <small style={{ textAlign: "left", fontFamily: "Optima, sans-serif" }}>
           {props.info.body.substring(0, 150) + " "}
           <a href="http://www.google.com">
@@ -97,4 +100,12 @@ const IndividualBlog = props => {
     </div>
   );
 };
-export default IndividualBlog;
+const mapStateToProps = activeBlog => {
+  return {
+    activeBlog
+  };
+};
+export default connect(
+  mapStateToProps,
+  { selectBlog }
+)(IndividualBlog);
