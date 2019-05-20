@@ -105,7 +105,7 @@ class ReadBlog extends React.Component {
             >
               <i style={{ alignSelf: "center" }} class="fas fa-user fa-lg" />
 
-              <small>Matt Solomon</small>
+              <small>Ashley Sharp</small>
             </span>
             <span
               className="col-lg-4 col-sm-12"
@@ -165,18 +165,9 @@ class ReadBlog extends React.Component {
           <small style={{ textAlign: "left" }}>
             {this.props.activeBlog.body}
           </small>
-          {/* <div
-            className="col-12  "
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              marginTop: "2%",
-              marginBottom: "2%"
-            }}
-          /> */}
-
+          <button className="form-control  btn btn-info">
+            Leave a like <i class="fas fa-thumbs-up" />
+          </button>
           <div class="form-group col-12" style={{ marginTop: "3%" }}>
             <h3 style={{ textAlign: "left", fontFamily: "Optima, sans-serif" }}>
               Leave a Reply
@@ -209,7 +200,7 @@ class ReadBlog extends React.Component {
               className="btn btn-info form-control"
               onClick={e => this.createComment(e)}
             >
-              Submit
+              Leave comment <i class="fas fa-comment" />
             </button>
           </div>
         </div>

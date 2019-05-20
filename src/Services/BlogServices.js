@@ -1,9 +1,9 @@
 import axios from "axios";
-let baseUrl = process.env.BASE_URL || "http://localhost:5000/api/blog/";
+let baseUrl = process.env.BASE_URL || "http://localhost:5000";
 
 export const addComment = data => {
   return axios
-    .put(`${baseUrl}${data.id}`, data)
+    .put(`${baseUrl}/api/blog/${data.id}`, data)
     .then(res => {
       return res;
     })
@@ -15,7 +15,7 @@ export const addComment = data => {
 
 export const addLike = id => {
   return axios
-    .put(`${baseUrl}/like/${id}`)
+    .put(`${baseUrl}/api/blog/like/${id}`)
     .then(res => {
       return res;
     })
