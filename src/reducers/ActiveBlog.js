@@ -1,4 +1,4 @@
-import { SELECT_BLOG } from "../actions";
+import { SELECT_BLOG, CLEAR_BLOG } from "../actions";
 import axios from "axios";
 // let baseUrl = process.env.baseUrl
 export default function(state = [], action) {
@@ -6,6 +6,8 @@ export default function(state = [], action) {
     case SELECT_BLOG:
       return action.payload.data;
 
+    case CLEAR_BLOG:
+      return [];
     default:
       return state;
   }

@@ -4,7 +4,7 @@ export const DELETE_ITEM = "DELETE_ITEM";
 export const SELECT_MENU = "SELECT_MENU";
 export const GET_BLOGS = "GET_BLOGS";
 export const SELECT_BLOG = "SELECT_BLOG";
-
+export const CLEAR_BLOG = "CLEAR_BLOG";
 export const selectBlog = async item => {
   let base = process.env.BASE_URL || "http://localhost:5000/api/blog";
   let response = axios.get(`${base}/${item}`);
@@ -13,7 +13,11 @@ export const selectBlog = async item => {
     payload: response
   };
 };
-
+export const clearBlog = () => {
+  return {
+    type: CLEAR_BLOG
+  };
+};
 export const getBlogs = async () => {
   try {
     let response = axios.get("http://localhost:5000/api/blogs");

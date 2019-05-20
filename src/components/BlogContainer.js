@@ -1,6 +1,7 @@
 import React from "react";
 import BlogNavBar from "./BlogNavBar";
 import { connect } from "react-redux";
+import { clearBlog } from "../actions";
 import IndividualBlog from "./IndividualBlog";
 import "./index.css";
 class BlogContainer extends React.Component {
@@ -8,6 +9,9 @@ class BlogContainer extends React.Component {
     super(props);
     this.state = {};
   }
+  componentDidMount = () => {
+    this.props.clearBlog();
+  };
   renderBlogs = () => {
     return this.props.blogs.blogs.map((item, i) => {
       return (
@@ -34,4 +38,7 @@ const mapStateToProps = state => {
     blogs: state.blogs
   };
 };
-export default connect(mapStateToProps)(BlogContainer);
+export default connect(
+  mapStateToProps,
+  { clearBlog }
+)(BlogContainer);

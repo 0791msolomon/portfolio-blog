@@ -63,7 +63,9 @@ class App extends React.Component {
                 }}
               >
                 <div>
-                  <h2 className="col-lg-3 col-sm-12 blogTitle">Example Blog</h2>
+                  <h2 className="col-lg-3 col-sm-12 blogTitle">
+                    Must Love Dogs
+                  </h2>
                 </div>
                 <div
                   style={{

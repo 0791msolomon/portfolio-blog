@@ -8,7 +8,7 @@ class Signup extends React.Component {
   render() {
     return (
       <div class=" col-12">
-        <h2 className="col-lg-12 blogTitle">Join Example Blog</h2>
+        <h2 className="col-lg-12 blogTitle">Join Must Love Dogs</h2>
         <div class="row justify-content-center">
           <div class="col-12 ">
             <form action="mail.php" method="post">

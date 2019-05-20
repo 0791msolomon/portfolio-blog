@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectBlog } from "../actions";
 const IndividualBlog = props => {
+  console.log(props.info);
+
   return (
     <div
       className="col-12"
@@ -59,9 +61,9 @@ const IndividualBlog = props => {
         </Link>
         <small style={{ textAlign: "left", fontFamily: "Optima, sans-serif" }}>
           {props.info.body.substring(0, 150) + " "}
-          <a href="http://www.google.com">
-            <b>View Post</b>
-          </a>
+          <Link to={`/blog/${props.info._id}`}>
+            <b onClick={() => props.selectBlog(props.info._id)}>View Post</b>
+          </Link>
         </small>
         <div
           style={{
@@ -71,11 +73,11 @@ const IndividualBlog = props => {
             justifyContent: "space-evenly"
           }}
         >
-          <span className="col-lg-4 col-sm-12">
+          <span className="col-lg-3 col-sm-12">
             <i style={{ alignSelf: "flex-end" }} class="fas fa-user fa-lg" />
             &nbsp; <small style={{ alignSelf: "flex-end" }}>Matt Solomon</small>
           </span>
-          <span className="col-lg-4 col-sm-12">
+          <span className="col-lg-3 col-sm-12">
             <i
               style={{ alignSelf: "flex-end" }}
               class="far fa-comments fa-lg"
@@ -85,7 +87,14 @@ const IndividualBlog = props => {
               {props.info.replies.length || 0}
             </small>
           </span>
-          <span className="col-lg-4 col-sm-12">
+          <span className="col-lg-3 col-sm-12">
+            <i style={{ alignSelf: "flex-end" }} class="fas fa-thumbs-up" />
+            &nbsp;
+            <small style={{ alignSelf: "flex-end" }}>
+              {props.info.likes ? props.info.likes.length : 0}
+            </small>
+          </span>
+          <span className="col-lg-3 col-sm-12">
             <i
               style={{ alignSelf: "flex-end" }}
               class="far fa-calendar-alt fa-lg"
