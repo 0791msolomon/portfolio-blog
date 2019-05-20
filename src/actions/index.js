@@ -6,8 +6,8 @@ export const GET_BLOGS = "GET_BLOGS";
 export const SELECT_BLOG = "SELECT_BLOG";
 export const CLEAR_BLOG = "CLEAR_BLOG";
 export const selectBlog = async item => {
-  let base = process.env.REACT_APP_BASEURL || "http://localhost:5000/api/blog";
-  let response = axios.get(`${base}/${item}`);
+  let base = process.env.REACT_APP_BASEURL || "http://localhost:5000";
+  let response = axios.get(`${base}/api/blog/${item}`);
   return {
     type: SELECT_BLOG,
     payload: response
