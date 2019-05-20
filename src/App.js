@@ -12,6 +12,8 @@ import Author from "./components/Author";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./components/Routes";
 import reduxPromise from "redux-promise";
+let baseUrl = process.env.BASE_URL || "http://localhost:5000";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ class App extends React.Component {
     this.componentDidMount = async () => {
       let arr = [];
       try {
-        let response = await axios.get("http://localhost:5000/api/blog");
+        let response = await axios.get(`${baseUrl}/api/blog`);
         response.data.map(item => {
           arr.push(item);
         });
