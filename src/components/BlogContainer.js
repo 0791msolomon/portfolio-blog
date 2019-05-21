@@ -2,18 +2,30 @@ import React from "react";
 import BlogNavBar from "./BlogNavBar";
 import { connect } from "react-redux";
 import { clearBlog } from "../actions";
+import axios from "axios";
 import IndividualBlog from "./IndividualBlog";
 import "./index.css";
+const baseUrl = process.env.REACT_APP_BASEURL || "http://localhost:5000";
 class BlogContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { blogs: [] };
   }
-  componentDidMount = () => {
+  componentDidMount = async () => {
+    let arr = [];
     this.props.clearBlog();
+    try {
+      let response = await axios.get(`${baseUrl}/api/blog`);
+      response.data.map(item => {
+        arr.push(item);
+      });
+      this.setState({ blogs: arr });
+    } catch (err) {
+      console.log(err);
+    }
   };
   renderBlogs = () => {
-    return this.props.blogs.blogs.map((item, i) => {
+    return this.state.blogs.map((item, i) => {
       return (
         <div key={i}>
           <IndividualBlog info={item} index={i} />
@@ -27,8 +39,9 @@ class BlogContainer extends React.Component {
         className=" col-12 blogContainer"
         style={{ display: "flex", flexDirection: "column", minHeight: "100%" }}
       >
-        <BlogNavBar />
-        {this.props.blogs.blogs.length > 0 ? this.renderBlogs() : null}
+        <BlogNavBar blogs={this.state.blogs} />
+        {/* {this.props.blogs.blogs.length > 0 ? this.renderBlogs() : null} */}
+        {this.state.blogs.length > 0 ? this.renderBlogs() : null}
       </div>
     );
   }

@@ -1,15 +1,48 @@
 import React from "react";
-
+import SignupInput from "./SignupInput";
+import { ToastContainer, toast } from "react-toastify";
+var validator = require("email-validator");
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "" };
+    this.state = { email: "", errors: {} };
   }
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+  submit = e => {
+    e.preventDefault();
+    let { email } = this.state;
+    if (!validator.validate(email)) {
+      return this.setState({ errors: { email: "Enter valid email" } });
+    }
+    toast.info("You're signed up, but this is fake!", {
+      position: "top-right",
+      autoClose: 2300,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true
+    });
+    this.setState({ errors: {} });
+  };
   render() {
     return (
       <div class=" col-12">
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+        />
         <h2 className="col-lg-12 blogTitle">
-          {" "}
           <u> Join Must Love Dogs</u>
         </h2>
         <div class="row justify-content-center">
@@ -26,28 +59,16 @@ class Signup extends React.Component {
                 </div>
                 <div class="card-body p-3">
                   <div class="form-group">
-                    <div class="input-group mb-2">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <i class="fa fa-envelope text-info" />
-                        </div>
-                      </div>
-                      <input
-                        onChange={e =>
-                          this.setState({ [e.target.name]: e.target.value })
-                        }
-                        type="email"
-                        class="form-control"
-                        id="nombre"
-                        name="email"
-                        placeholder="example@gmail.com"
-                        required
-                      />
-                    </div>
+                    <SignupInput
+                      errors={this.state.errors}
+                      value={this.state.email}
+                      onChange={e => this.onChange(e)}
+                    />
                   </div>
 
                   <div class="text-center">
                     <input
+                      onClick={e => this.submit(e)}
                       type="submit"
                       value="Subscribe"
                       class="btn btn-info btn-block rounded-0 py-2"

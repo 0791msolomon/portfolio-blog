@@ -18,30 +18,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { blogs: [] };
-    this.componentDidMount = async () => {
-      let arr = [];
-      try {
-        let response = await axios.get(`${baseUrl}/api/blog`);
-        response.data.map(item => {
-          arr.push(item);
-        });
-        this.setState({ blogs: arr });
-      } catch (err) {
-        console.log(err);
-      }
-    };
   }
   render() {
-    // const store = ;
-
     return (
-      <Provider
-        store={createStore(
-          rootReducer,
-          { blogs: this.state },
-          applyMiddleware(reduxPromise)
-        )}
-      >
+      <Provider store={createStore(rootReducer, applyMiddleware(reduxPromise))}>
         <BrowserRouter>
           <div
             className="   App"
@@ -52,7 +32,6 @@ class App extends React.Component {
               flexWrap: "nowrap"
             }}
           >
-            {" "}
             <Header />
             <div
               style={{ height: "100%", marginLeft: "3%", marginRight: "3%" }}

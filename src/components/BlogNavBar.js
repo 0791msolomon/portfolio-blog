@@ -1,17 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
 const BlogNavBar = props => {
-  const renderBlogs = () => {
-    return props.blogs.blogs.map((blog, i) => {
+  const renderCategories = () => {
+    return ["animals", "finance", "adventure", "exercise"].map((item, i) => {
       return (
-        <button
-          key={i}
-          className="form-control col-lg-3 col-md-4 col-sm-12 postBtn"
-        >
-          {blog.title}
+        <button key={i} className="form-control col-lg-3   col-sm-12 postBtn">
+          {item}
         </button>
       );
     });
+    //  return props.blogs.map((blog, i) => {
+    //      return (
+    //       <button
+    //         key={i}
+    //         className="form-control col-lg-3 col-md-4 col-sm-12 postBtn"
+    //       >
+    //         {blog.title}
+    //       </button>
+    //     );
+    //   });
   };
   return (
     <div>
@@ -50,7 +57,7 @@ const BlogNavBar = props => {
             flexWrap: "wrap"
           }}
         >
-          {renderBlogs()}
+          {renderCategories()}
         </div>
       </div>
     </div>

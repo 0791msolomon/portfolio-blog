@@ -4,11 +4,12 @@ import moment from "moment";
 import { addComment, addLike } from "../Services/BlogServices";
 import { likePost } from "../actions";
 import { ToastContainer, toast } from "react-toastify";
+import { TextArea, NameInput } from "./BlogInputs";
 import "react-toastify/dist/ReactToastify.css";
 class ReadBlog extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { reply: "", name: "" };
+    this.state = { reply: "", name: "", errors: {} };
   }
 
   likePost = async e => {
@@ -24,6 +25,7 @@ class ReadBlog extends React.Component {
       });
     } else {
       await this.props.likePost(this.props.activeBlog._id);
+      await addLike(this.props.activeBlog._id);
       return toast.info("You liked this post!", {
         position: "top-right",
         autoClose: 2300,
@@ -36,7 +38,17 @@ class ReadBlog extends React.Component {
   };
   createComment = async e => {
     e.preventDefault();
-
+    let { name, reply } = this.state;
+    if (name.trim().length === 0) {
+      this.setState({ errors: { name: "You must enter a value" } });
+      return;
+    }
+    if (reply.trim().length === 0 || reply.trim().length < 10) {
+      this.setState({
+        errors: { reply: "Reply must be at least 10 characters" }
+      });
+      return;
+    }
     addComment({
       name: this.state.name,
       reply: this.state.reply,
@@ -64,6 +76,7 @@ class ReadBlog extends React.Component {
           draggable: true
         });
       });
+    this.setState({ errors: {} });
   };
   onChange = e => {
     this.setState({
@@ -202,23 +215,20 @@ class ReadBlog extends React.Component {
             <label style={{ float: "left", fontFamily: "Optima, sans-serif" }}>
               Your name
             </label>
-            <input
-              type="text"
-              className="form-control"
-              name="name"
-              value={this.state.name}
+
+            <NameInput
               onChange={e => this.onChange(e)}
+              value={this.state.name}
+              errors={this.state.errors}
             />
             <label style={{ float: "left", fontFamily: "Optima, sans-serif" }}>
               Comment
             </label>
-            <textarea
-              class="form-control rounded-0"
-              id="exampleFormControlTextarea1"
-              rows="10"
-              name="reply"
-              value={this.state.reply}
+
+            <TextArea
               onChange={e => this.onChange(e)}
+              value={this.state.reply}
+              errors={this.state.errors}
             />
             <button
               style={{
@@ -235,8 +245,6 @@ class ReadBlog extends React.Component {
     );
   };
   render() {
-    console.log(this.props.likes);
-
     return (
       <div
         className=" col-12 blogContainer"
