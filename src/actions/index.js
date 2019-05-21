@@ -5,6 +5,15 @@ export const SELECT_MENU = "SELECT_MENU";
 export const GET_BLOGS = "GET_BLOGS";
 export const SELECT_BLOG = "SELECT_BLOG";
 export const CLEAR_BLOG = "CLEAR_BLOG";
+export const LIKE_POST = "LIKE_POST";
+
+export const likePost = id => {
+  return {
+    type: LIKE_POST,
+    payload: id
+  };
+};
+
 export const selectBlog = async item => {
   let base = process.env.REACT_APP_BASEURL || "http://localhost:5000";
   let response = axios.get(`${base}/api/blog/${item}`);
@@ -20,10 +29,12 @@ export const clearBlog = () => {
 };
 export const getBlogs = async () => {
   try {
-    let response = axios.get("http://localhost:5000/api/blogs");
+    let base = process.env.REACT_APP_BASEURL || "http://localhost:5000";
+    let response = axios.get(`${base}/api/blog`);
+    console.log(response);
     return {
-      type: GET_BLOGS,
-      payload: response.data
+      type: GET_BLOGS
+      // payload: response
     };
   } catch (err) {
     return {

@@ -91,7 +91,7 @@ const IndividualBlog = props => {
             <i style={{ alignSelf: "flex-end" }} class="fas fa-thumbs-up" />
             &nbsp;
             <small style={{ alignSelf: "flex-end" }}>
-              {props.info.likes ? props.info.likes.length : 0}
+              {props.info.likes ? props.info.likes : 0}
             </small>
           </span>
           <span className="col-lg-3 col-sm-12">

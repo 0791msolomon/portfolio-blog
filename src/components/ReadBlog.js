@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import { addComment, addLike } from "../Services/BlogServices";
+import { likePost } from "../actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 class ReadBlog extends React.Component {
@@ -10,6 +11,29 @@ class ReadBlog extends React.Component {
     this.state = { reply: "", name: "" };
   }
 
+  likePost = async e => {
+    e.preventDefault();
+    if (this.props.likes.includes(this.props.activeBlog._id)) {
+      return toast.error("You already liked this post", {
+        position: "top-right",
+        autoClose: 2300,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      });
+    } else {
+      await this.props.likePost(this.props.activeBlog._id);
+      return toast.info("You liked this post!", {
+        position: "top-right",
+        autoClose: 2300,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      });
+    }
+  };
   createComment = async e => {
     e.preventDefault();
 
@@ -165,7 +189,10 @@ class ReadBlog extends React.Component {
           <small style={{ textAlign: "left" }}>
             {this.props.activeBlog.body}
           </small>
-          <button className="form-control  btn btn-info">
+          <button
+            className="form-control  btn btn-info"
+            onClick={e => this.likePost(e)}
+          >
             Leave a like <i class="fas fa-thumbs-up" />
           </button>
           <div class="form-group col-12" style={{ marginTop: "3%" }}>
@@ -208,6 +235,8 @@ class ReadBlog extends React.Component {
     );
   };
   render() {
+    console.log(this.props.likes);
+
     return (
       <div
         className=" col-12 blogContainer"
@@ -218,7 +247,10 @@ class ReadBlog extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ activeBlog }) => {
-  return { activeBlog };
+const mapStateToProps = ({ activeBlog, likes }) => {
+  return { activeBlog, likes };
 };
-export default connect(mapStateToProps)(ReadBlog);
+export default connect(
+  mapStateToProps,
+  { likePost }
+)(ReadBlog);

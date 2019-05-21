@@ -66,7 +66,7 @@ class App extends React.Component {
               >
                 <div>
                   <h2 className="col-lg-3 col-sm-12 blogTitle">
-                    Must Love Dogs
+                    <u> Must Love Dogs</u>
                   </h2>
                 </div>
                 <div
