@@ -37,7 +37,7 @@ const Header = props => {
               About
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a
               className="nav-link navbar-brand"
               style={{ fontWeight: "bold", color: "white" }}
@@ -45,7 +45,7 @@ const Header = props => {
             >
               Archives
             </a>
-          </li>
+          </li> */}
           <li className="nav-item">
             <a
               className="nav-link navbar-brand"

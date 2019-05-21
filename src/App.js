@@ -12,6 +12,8 @@ import Author from "./components/Author";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./components/Routes";
 import reduxPromise from "redux-promise";
+import Ads from "./components/Ads";
+import Contact from "./components/Contact";
 let baseUrl = process.env.REACT_APP_BASEURL || "http://localhost:5000";
 
 class App extends React.Component {
@@ -57,12 +59,13 @@ class App extends React.Component {
                   }}
                 >
                   <div className="col-lg-8 col-sm-12">
-                    {/* <BlogContainer /> */}
                     <Routes />
                   </div>
                   <div className="col-lg-4 col-sm-12">
                     <Signup />
                     <Author />
+                    <Ads />
+                    <Contact />
                   </div>
                 </div>
               </div>
@@ -75,5 +78,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// https://mdbootstrap.com/img/Photos/Others/img%20(50).jpg

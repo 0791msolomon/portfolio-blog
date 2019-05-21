@@ -35,3 +35,34 @@
   margin-bottom: 3%;
   font-family: Marker Felt, fantasy;
 }
+
+.adsImg:hover {
+  cursor: pointer;
+}
+
+.iconHover {
+  color: #94f3ff;
+}
+
+.repliesDiv {
+  width: 100%;
+  min-height: 45px;
+  height: auto;
+  /* margin: auto; */
+  text-align: left;
+  font-weight: bold;
+  background-color: lightgray;
+}
+
+.repliesDiv2 {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  /* margin: auto; */
+  margin-left: 3%;
+  border-width: 40px 35px 0 35px;
+  border-color: lightgray transparent transparent transparent;
+  line-height: 0px;
+  _border-color: lightgray #000000 #000000 #000000;
+  _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}

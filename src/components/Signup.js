@@ -26,7 +26,7 @@ class Signup extends React.Component {
       pauseOnHover: true,
       draggable: true
     });
-    this.setState({ errors: {} });
+    this.setState({ errors: {}, email: "" });
   };
   render() {
     return (

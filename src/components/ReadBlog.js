@@ -5,6 +5,8 @@ import { addComment, addLike } from "../Services/BlogServices";
 import { likePost } from "../actions";
 import { ToastContainer, toast } from "react-toastify";
 import { TextArea, NameInput } from "./BlogInputs";
+import Replies from "./Replies";
+import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 class ReadBlog extends React.Component {
   constructor(props) {
@@ -78,6 +80,23 @@ class ReadBlog extends React.Component {
       });
     this.setState({ errors: {} });
   };
+  renderReplies = () => {
+    let replies = [];
+    if (
+      this.props.activeBlog.replies &&
+      this.props.activeBlog.replies.length > 0
+    ) {
+      replies = this.props.activeBlog.replies;
+    }
+    return replies.map((item, i) => {
+      return (
+        <div key={i}>
+          <Replies reply={item} />
+        </div>
+      );
+    });
+  };
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -105,7 +124,7 @@ class ReadBlog extends React.Component {
           pauseOnHover
         />
         <div
-          class="jumbotron jumbotron-fluid"
+          class="col-12 jumbotron jumbotron-fluid"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -117,9 +136,11 @@ class ReadBlog extends React.Component {
             margin: "0%"
           }}
         >
-          <h1 class="display-4" style={{ fontFamily: "Optima, sans-serif" }}>
-            {this.props.activeBlog.title}
-          </h1>
+          <div className="col-12">
+            <h1 class="display-4" style={{ fontFamily: "Optima, sans-serif" }}>
+              {this.props.activeBlog.title}
+            </h1>
+          </div>
           <div
             className="col-lg-6 col-sm-12"
             style={{
@@ -132,7 +153,7 @@ class ReadBlog extends React.Component {
             }}
           >
             <span
-              className="col-lg-4 col-sm-12"
+              className="col-lg-2 col-sm-12"
               style={{
                 display: "flex",
                 marginTop: "1%",
@@ -145,7 +166,7 @@ class ReadBlog extends React.Component {
               <small>Ashley Sharp</small>
             </span>
             <span
-              className="col-lg-4 col-sm-12"
+              className="col-lg-2 col-sm-12"
               style={{
                 display: "flex",
                 marginTop: "1%",
@@ -164,7 +185,22 @@ class ReadBlog extends React.Component {
               </small>
             </span>
             <span
-              className="col-lg-4 col-sm-12"
+              className="col-lg-2 col-sm-12"
+              style={{
+                display: "flex",
+                marginTop: "1%",
+                flexDirection: "column",
+                justifyContent: "center"
+              }}
+            >
+              <i style={{ alignSelf: "center" }} class="fas fa-thumbs-up" />
+              <small>
+                {this.props.activeBlog.likes ? this.props.activeBlog.likes : 0}
+              </small>
+            </span>
+
+            <span
+              className="col-lg-2 col-sm-12"
               style={{
                 display: "flex",
                 marginTop: "1%",
@@ -208,6 +244,24 @@ class ReadBlog extends React.Component {
           >
             Leave a like <i class="fas fa-thumbs-up" />
           </button>
+          <div class=" col-12" style={{ marginTop: "3%" }}>
+            <div className="col-12 repliesDiv">
+              {this.props.activeBlog.replies &&
+              this.props.activeBlog.replies.length > 1
+                ? `${this.props.activeBlog.replies.length} Responses to ${
+                    this.props.activeBlog.title
+                  }`
+                : this.props.activeBlog.replies &&
+                  this.props.activeBlog.replies.length === 1
+                ? `${this.props.activeBlog.replies.length} Response to ${
+                    this.props.activeBlog.title
+                  }`
+                : `0 Responses to ${this.props.activeBlog.title}`}
+            </div>
+            <div className="repliesDiv2" />
+            {this.renderReplies()}
+          </div>
+
           <div class="form-group col-12" style={{ marginTop: "3%" }}>
             <h3 style={{ textAlign: "left", fontFamily: "Optima, sans-serif" }}>
               Leave a Reply

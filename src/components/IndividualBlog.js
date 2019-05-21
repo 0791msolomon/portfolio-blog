@@ -75,24 +75,19 @@ const IndividualBlog = props => {
         >
           <span className="col-lg-3 col-sm-12">
             <i style={{ alignSelf: "flex-end" }} class="fas fa-user fa-lg" />
-            &nbsp; <small style={{ alignSelf: "flex-end" }}>Matt Solomon</small>
+            &nbsp; <small>Ash Sharp</small>
           </span>
           <span className="col-lg-3 col-sm-12">
-            <i
-              style={{ alignSelf: "flex-end" }}
-              class="far fa-comments fa-lg"
-            />
+            <i class="far fa-comments fa-lg" />
             &nbsp;
             <small style={{ alignSelf: "flex-end" }}>
               {props.info.replies.length || 0}
             </small>
           </span>
           <span className="col-lg-3 col-sm-12">
-            <i style={{ alignSelf: "flex-end" }} class="fas fa-thumbs-up" />
+            <i class="fas fa-thumbs-up" />
             &nbsp;
-            <small style={{ alignSelf: "flex-end" }}>
-              {props.info.likes ? props.info.likes : 0}
-            </small>
+            <small>{props.info.likes ? props.info.likes : 0}</small>
           </span>
           <span className="col-lg-3 col-sm-12">
             <i
@@ -100,9 +95,7 @@ const IndividualBlog = props => {
               class="far fa-calendar-alt fa-lg"
             />
             &nbsp;
-            <small style={{ alignSelf: "flex-end" }}>
-              {moment(props.info.time).format("ll")}
-            </small>
+            <small>{moment(props.info.time).format("ll")}</small>
           </span>
         </div>
       </div>
