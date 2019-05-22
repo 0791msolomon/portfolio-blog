@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./index.css";
 const Header = props => {
   return (
     <nav
@@ -21,8 +22,12 @@ const Header = props => {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item  ">
             <Link
-              className="nav-link navbar-brand"
-              style={{ fontWeight: "bold", color: "white" }}
+              className="nav-link navbar-brand headerOption"
+              style={{
+                fontWeight: "bold",
+                color: "white",
+                fontFamily: "Gill Sans, sans-serif"
+              }}
               to="/"
             >
               Home
@@ -30,8 +35,12 @@ const Header = props => {
           </li>
           <li className="nav-item">
             <Link
-              className="nav-link navbar-brand"
-              style={{ fontWeight: "bold", color: "white" }}
+              className="nav-link navbar-brand headerOption"
+              style={{
+                fontWeight: "bold",
+                color: "white",
+                fontFamily: "Gill Sans, sans-serif"
+              }}
               to="/about"
             >
               About
@@ -40,20 +49,24 @@ const Header = props => {
           {/* <li className="nav-item">
             <a
               className="nav-link navbar-brand"
-              style={{ fontWeight: "bold", color: "white" }}
+              style={{ fontWeight: "bold", color: "white", fontFamily: 'Gill Sans, sans-serif' }}
               href="#"
             >
               Archives
             </a>
           </li> */}
           <li className="nav-item">
-            <a
-              className="nav-link navbar-brand"
-              style={{ fontWeight: "bold", color: "white" }}
-              href="#"
+            <Link
+              className="nav-link navbar-brand headerOption"
+              style={{
+                fontWeight: "bold",
+                color: "white",
+                fontFamily: "Gill Sans, sans-serif"
+              }}
+              to="/contact"
             >
-              Contact
-            </a>
+              Contact Me
+            </Link>
           </li>
         </ul>
         <ul className="navbar-nav nav-flex-icons">

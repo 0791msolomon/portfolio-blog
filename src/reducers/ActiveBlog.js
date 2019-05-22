@@ -1,6 +1,5 @@
-import { SELECT_BLOG, CLEAR_BLOG, UPDATE_ACTIVE } from "../actions";
-import axios from "axios";
-// let baseUrl = process.env.baseUrl
+import { SELECT_BLOG, CLEAR_BLOG, UPDATE_ACTIVE, ADD_REPLY } from "../actions";
+
 export default function(state = [], action) {
   switch (action.type) {
     case SELECT_BLOG:
@@ -10,12 +9,23 @@ export default function(state = [], action) {
       return {
         body: state.body,
         image: state.image,
-        likes: (state.likes += 1),
-        replies: [...state.replies],
+        likes: state.likes ? (state.likes += 1) : (state.likes = 1),
+        replies: [...state.replies] || [],
         time: state.time,
+        title: state.title,
         _id: state._id
       };
-    // return action.payload;
+    case ADD_REPLY:
+      return {
+        body: state.body,
+        image: state.image,
+        likes: state.likes || 0,
+        replies: [...state.replies, action.payload],
+        time: state.time,
+        title: state.title,
+        _id: state._id
+      };
+
     case CLEAR_BLOG:
       return [];
     default:

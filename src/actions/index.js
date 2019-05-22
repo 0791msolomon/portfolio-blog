@@ -7,6 +7,14 @@ export const SELECT_BLOG = "SELECT_BLOG";
 export const CLEAR_BLOG = "CLEAR_BLOG";
 export const LIKE_POST = "LIKE_POST";
 export const UPDATE_ACTIVE = "UPDATE_ACTIVE";
+export const ADD_REPLY = "ADD_REPLY";
+
+export const addReply = reply => {
+  return {
+    type: ADD_REPLY,
+    payload: reply
+  };
+};
 
 export const updateActiveBlog = blog => {
   return {
@@ -37,8 +45,8 @@ export const clearBlog = () => {
 };
 export const getBlogs = async () => {
   try {
-    let base = process.env.REACT_APP_BASEURL || "http://localhost:5000";
-    let response = axios.get(`${base}/api/blog`);
+    // let base = process.env.REACT_APP_BASEURL || "http://localhost:5000";
+    // let response = axios.get(`${base}/api/blog`);
     return {
       type: GET_BLOGS
     };

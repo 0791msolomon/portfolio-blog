@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import { addComment, addLike } from "../Services/BlogServices";
-import { likePost, updateActiveBlog } from "../actions";
+import { likePost, updateActiveBlog, addReply } from "../actions";
 import { ToastContainer, toast } from "react-toastify";
 import { TextArea, NameInput } from "./BlogInputs";
 import Replies from "./Replies";
@@ -68,7 +68,13 @@ class ReadBlog extends React.Component {
       id: this.props.activeBlog._id
     })
       .then(async res => {
+        let obj = {
+          comment: this.state.reply,
+          name: this.state.name,
+          time: Date.parse(new Date())
+        };
         await this.setState({ reply: "", name: "" });
+        this.props.addReply(obj);
         toast.info("Your comment was added!", {
           position: "top-right",
           autoClose: 2300,
@@ -99,10 +105,11 @@ class ReadBlog extends React.Component {
     ) {
       replies = this.props.activeBlog.replies;
     }
+    replies.sort((a, b) => b.time - a.time);
     return replies.map((item, i) => {
       return (
         <div key={i}>
-          <Replies reply={item} />
+          <Replies reply={item} count={i} />
         </div>
       );
     });
@@ -123,9 +130,6 @@ class ReadBlog extends React.Component {
           backgroundColor: "white"
         }}
       >
-        <button onClick={() => console.log(this.props.activeBlog)}>
-          click
-        </button>
         <ToastContainer
           position="top-right"
           autoClose={1900}
@@ -138,7 +142,7 @@ class ReadBlog extends React.Component {
           pauseOnHover
         />
         <div
-          class="col-12 jumbotron jumbotron-fluid"
+          className="col-12 jumbotron jumbotron-fluid"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -152,7 +156,7 @@ class ReadBlog extends React.Component {
         >
           <div className="col-12">
             <h1
-              class="display-4"
+              className="display-4"
               style={{ fontFamily: "Marker Felt, fantasy" }}
             >
               {this.props.activeBlog.title}
@@ -179,7 +183,10 @@ class ReadBlog extends React.Component {
                   justifyContent: "center"
                 }}
               >
-                <i style={{ alignSelf: "center" }} class="fas fa-user fa-lg" />
+                <i
+                  style={{ alignSelf: "center" }}
+                  className="fas fa-user fa-lg"
+                />
 
                 <small>Ashley Sharp</small>
               </span>
@@ -194,7 +201,7 @@ class ReadBlog extends React.Component {
               >
                 <i
                   style={{ alignSelf: "center" }}
-                  class="far fa-comments fa-lg"
+                  className="far fa-comments fa-lg"
                 />
                 <small>
                   {this.props.activeBlog.replies
@@ -211,7 +218,10 @@ class ReadBlog extends React.Component {
                   justifyContent: "center"
                 }}
               >
-                <i style={{ alignSelf: "center" }} class="fas fa-thumbs-up" />
+                <i
+                  style={{ alignSelf: "center" }}
+                  className="fas fa-thumbs-up"
+                />
                 <small>
                   {this.props.activeBlog.likes
                     ? this.props.activeBlog.likes
@@ -230,7 +240,7 @@ class ReadBlog extends React.Component {
               >
                 <i
                   style={{ alignSelf: "center" }}
-                  class="far fa-calendar-alt fa-lg"
+                  className="far fa-calendar-alt fa-lg"
                 />
                 <small>{moment(this.props.activeBlog.time).format("l")}</small>
               </span>
@@ -241,9 +251,10 @@ class ReadBlog extends React.Component {
         <img
           className="col-lg-6 col-sm-12"
           src={this.props.activeBlog.image}
+          alt={"active blog display"}
           style={{
             paddingTop: "3%",
-            height: "250px",
+            height: "300px",
             width: "100%",
             alignSelf: "center"
           }}
@@ -263,9 +274,9 @@ class ReadBlog extends React.Component {
             className="form-control  btn btn-info"
             onClick={e => this.likePost(e)}
           >
-            Leave a like <i class="fas fa-thumbs-up" />
+            Leave a like <i className="fas fa-thumbs-up" />
           </button>
-          <div class=" col-12" style={{ marginTop: "3%" }}>
+          <div className=" col-12" style={{ marginTop: "3%" }}>
             <div className="col-12 repliesDiv">
               {this.props.activeBlog.replies &&
               this.props.activeBlog.replies.length > 1
@@ -283,8 +294,14 @@ class ReadBlog extends React.Component {
             {this.renderReplies()}
           </div>
 
-          <div class="form-group col-12" style={{ marginTop: "3%" }}>
-            <h3 style={{ textAlign: "left", fontFamily: "Optima, sans-serif" }}>
+          <div className="form-group col-12" style={{ marginTop: "3%" }}>
+            <h3
+              style={{
+                textAlign: "left",
+                fontWeight: "bold",
+                fontFamily: "Optima, sans-serif"
+              }}
+            >
               Leave a Reply
             </h3>
             <label style={{ float: "left", fontFamily: "Optima, sans-serif" }}>
@@ -312,7 +329,7 @@ class ReadBlog extends React.Component {
               className="btn btn-info form-control"
               onClick={e => this.createComment(e)}
             >
-              Leave comment <i class="fas fa-comment" />
+              Leave comment <i className="fas fa-comment" />
             </button>
           </div>
         </div>
@@ -335,5 +352,5 @@ const mapStateToProps = ({ activeBlog, likes }) => {
 };
 export default connect(
   mapStateToProps,
-  { likePost, updateActiveBlog }
+  { likePost, updateActiveBlog, addReply }
 )(ReadBlog);

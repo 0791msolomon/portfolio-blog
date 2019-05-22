@@ -66,3 +66,8 @@
   _border-color: lightgray #000000 #000000 #000000;
   _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
 }
+
+.headerOption:hover {
+  text-decoration: underline;
+  text-decoration-color: red;
+}

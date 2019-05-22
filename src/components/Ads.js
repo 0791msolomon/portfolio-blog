@@ -20,7 +20,11 @@ const Ads = props => {
         Other sample projects
       </h3>
       <div style={{ marginTop: "2%" }} className="col-6  ">
-        <a href="https://matthew-s-weather.herokuapp.com/" target="_blank">
+        <a
+          href="https://matthew-s-weather.herokuapp.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             className="adsImg"
             src={weather}
@@ -30,7 +34,11 @@ const Ads = props => {
         </a>
       </div>
       <div style={{ marginTop: "2%" }} className="col-6  ">
-        <a href="https://matthew-s-menu.herokuapp.com/" target="_blank">
+        <a
+          href="https://matthew-s-menu.herokuapp.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             className="adsImg"
             src={menu}
@@ -40,7 +48,11 @@ const Ads = props => {
         </a>
       </div>
       <div style={{ marginTop: "2%" }} className="col-6  ">
-        <a href="https://matthew-s-higherlower.herokuapp.com/" target="_blank">
+        <a
+          href="https://matthew-s-higherlower.herokuapp.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             className="adsImg"
             src={higherlower}
@@ -53,6 +65,7 @@ const Ads = props => {
         <a
           href="https://matthew-s-portfolio-landing.herokuapp.com/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             className="adsImg"

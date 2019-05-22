@@ -1,9 +1,7 @@
 import React from "react";
 import "./App.css";
 import Header from "./components/Header";
-import BlogContainer from "./components/BlogContainer";
 import "./index.css";
-import axios from "axios";
 import rootReducer from "./reducers";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -14,7 +12,6 @@ import Routes from "./components/Routes";
 import reduxPromise from "redux-promise";
 import Ads from "./components/Ads";
 import Contact from "./components/Contact";
-let baseUrl = process.env.REACT_APP_BASEURL || "http://localhost:5000";
 
 class App extends React.Component {
   constructor(props) {

@@ -2,13 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 const BlogNavBar = props => {
   const renderCategories = () => {
-    return ["animals", "finance", "adventure", "exercise"].map((item, i) => {
-      return (
-        <button key={i} className="form-control col-lg-3   col-sm-12 postBtn">
-          {item}
-        </button>
-      );
-    });
+    return ["Most Likes", "Most Recent", "Oldest", "Most Replies"].map(
+      (item, i) => {
+        return (
+          <button key={i} className="form-control col-lg-3 col-sm-12 postBtn">
+            {item}
+          </button>
+        );
+      }
+    );
     //  return props.blogs.map((blog, i) => {
     //      return (
     //       <button
@@ -37,7 +39,7 @@ const BlogNavBar = props => {
             marginBottom: "0%"
           }}
         >
-          Categories &nbsp;&nbsp;
+          Sort By &nbsp;&nbsp;
           <i className="fas fa-bars" />
         </a>
       </p>
@@ -54,7 +56,8 @@ const BlogNavBar = props => {
             backgroundColor: "#a0a6af",
             display: "flex",
             flexDirection: "row",
-            flexWrap: "wrap"
+            flexWrap: "wrap",
+            justifyContent: "space-around"
           }}
         >
           {renderCategories()}

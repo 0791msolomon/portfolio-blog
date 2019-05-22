@@ -22,7 +22,7 @@ const IndividualBlog = props => {
       <div className="col-lg-3 col-sm-12" style={{ alignSelf: "center" }}>
         <img
           src={props.info.image}
-          style={{ height: "150px", width: "100%" }}
+          style={{ height: "150px", borderRadius: "25%", width: "100%" }}
           alt="blog info"
         />
       </div>
@@ -72,25 +72,28 @@ const IndividualBlog = props => {
           }}
         >
           <span className="col-lg-3 col-sm-12">
-            <i style={{ alignSelf: "flex-end" }} class="fas fa-user fa-lg" />
+            <i
+              style={{ alignSelf: "flex-end" }}
+              className="fas fa-user fa-lg"
+            />
             &nbsp; <small>Ash Sharp</small>
           </span>
           <span className="col-lg-3 col-sm-12">
-            <i class="far fa-comments fa-lg" />
+            <i className="far fa-comments fa-lg" />
             &nbsp;
             <small style={{ alignSelf: "flex-end" }}>
               {props.info.replies.length || 0}
             </small>
           </span>
           <span className="col-lg-3 col-sm-12">
-            <i class="fas fa-thumbs-up" />
+            <i className="fas fa-thumbs-up" />
             &nbsp;
             <small>{props.info.likes ? props.info.likes : 0}</small>
           </span>
           <span className="col-lg-3 col-sm-12">
             <i
               style={{ alignSelf: "flex-end" }}
-              class="far fa-calendar-alt fa-lg"
+              className="far fa-calendar-alt fa-lg"
             />
             &nbsp;
             <small>{moment(props.info.time).format("ll")}</small>

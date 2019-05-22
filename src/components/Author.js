@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Author = props => {
   return (
     <div
-      class=" col-12"
+      className=" col-12"
       // style={{
       //   display: "flex",
       //   flexDirection: "column",
@@ -17,7 +17,7 @@ const Author = props => {
       <h2 className="col-lg-12 author">Meet the Author</h2>
       <div className="col-12">
         <img
-          style={{ height: "350px", width: "100%" }}
+          style={{ height: "350px", width: "100%", borderRadius: "15%" }}
           src={author}
           alt="the author"
         />

@@ -17,8 +17,9 @@ class BlogContainer extends React.Component {
     try {
       let response = await axios.get(`${baseUrl}/api/blog`);
       response.data.map(item => {
-        arr.push(item);
+        return arr.push(item);
       });
+      arr.sort((a, b) => b.time - a.time);
       this.setState({ blogs: arr });
     } catch (err) {
       console.log(err);
@@ -40,7 +41,6 @@ class BlogContainer extends React.Component {
         style={{ display: "flex", flexDirection: "column", minHeight: "100%" }}
       >
         <BlogNavBar blogs={this.state.blogs} />
-        {/* {this.props.blogs.blogs.length > 0 ? this.renderBlogs() : null} */}
         {this.state.blogs.length > 0 ? this.renderBlogs() : null}
       </div>
     );

@@ -4,10 +4,10 @@ import classnames from "classnames";
 
 export default function SignupInput(props) {
   return (
-    <div class="input-group mb-2">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          <i class="fa fa-envelope text-info" />
+    <div className="input-group mb-2">
+      <div className="input-group-prepend">
+        <div className="input-group-text">
+          <i className="fa fa-envelope text-info" />
         </div>
       </div>
       <input

@@ -30,7 +30,7 @@ class Signup extends React.Component {
   };
   render() {
     return (
-      <div class=" col-12">
+      <div className=" col-12">
         <ToastContainer
           position="top-right"
           autoClose={3000}
@@ -45,20 +45,20 @@ class Signup extends React.Component {
         <h2 className="col-lg-12 blogTitle">
           <u> Join Must Love Dogs</u>
         </h2>
-        <div class="row justify-content-center">
-          <div class="col-12 ">
+        <div className="row justify-content-center">
+          <div className="col-12 ">
             <form action="mail.php" method="post">
-              <div class="card border-primary rounded-0">
-                <div class="card-header p-0">
-                  <div class="bg-info text-white text-center py-2">
+              <div className="card border-primary rounded-0">
+                <div className="card-header p-0">
+                  <div className="bg-info text-white text-center py-2">
                     <h3>
-                      <i class="fa fa-envelope" /> Subscribe to the blog
+                      <i className="fa fa-envelope" /> Subscribe to the blog
                     </h3>
-                    <p class="m-0">Enter your email</p>
+                    <p className="m-0">Enter your email</p>
                   </div>
                 </div>
-                <div class="card-body p-3">
-                  <div class="form-group">
+                <div className="card-body p-3">
+                  <div className="form-group">
                     <SignupInput
                       errors={this.state.errors}
                       value={this.state.email}
@@ -66,12 +66,12 @@ class Signup extends React.Component {
                     />
                   </div>
 
-                  <div class="text-center">
+                  <div className="text-center">
                     <input
                       onClick={e => this.submit(e)}
                       type="submit"
                       value="Subscribe"
-                      class="btn btn-info btn-block rounded-0 py-2"
+                      className="btn btn-info btn-block rounded-0 py-2"
                     />
                   </div>
                 </div>
