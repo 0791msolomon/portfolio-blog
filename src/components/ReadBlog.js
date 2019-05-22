@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import { addComment, addLike } from "../Services/BlogServices";
-import { likePost } from "../actions";
+import { likePost, updateActiveBlog } from "../actions";
 import { ToastContainer, toast } from "react-toastify";
 import { TextArea, NameInput } from "./BlogInputs";
 import Replies from "./Replies";
@@ -13,7 +13,6 @@ class ReadBlog extends React.Component {
     super(props);
     this.state = { reply: "", name: "", errors: {} };
   }
-
   likePost = async e => {
     e.preventDefault();
     if (this.props.likes.includes(this.props.activeBlog._id)) {
@@ -26,16 +25,28 @@ class ReadBlog extends React.Component {
         draggable: true
       });
     } else {
-      await this.props.likePost(this.props.activeBlog._id);
-      await addLike(this.props.activeBlog._id);
-      return toast.info("You liked this post!", {
-        position: "top-right",
-        autoClose: 2300,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true
-      });
+      try {
+        await this.props.likePost(this.props.activeBlog._id);
+        await addLike(this.props.activeBlog._id);
+        await this.props.updateActiveBlog(this.props.activeBlog);
+        return toast.info("You liked this post!", {
+          position: "top-right",
+          autoClose: 2300,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        });
+      } catch (err) {
+        return toast.error("Error with request", {
+          position: "top-right",
+          autoClose: 2300,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        });
+      }
     }
   };
   createComment = async e => {
@@ -103,7 +114,6 @@ class ReadBlog extends React.Component {
     });
   };
   renderBlog = () => {
-    console.log(this.props.activeBlog);
     return (
       <div
         style={{
@@ -113,6 +123,9 @@ class ReadBlog extends React.Component {
           backgroundColor: "white"
         }}
       >
+        <button onClick={() => console.log(this.props.activeBlog)}>
+          click
+        </button>
         <ToastContainer
           position="top-right"
           autoClose={1900}
@@ -138,84 +151,91 @@ class ReadBlog extends React.Component {
           }}
         >
           <div className="col-12">
-            <h1 class="display-4" style={{ fontFamily: "Optima, sans-serif" }}>
+            <h1
+              class="display-4"
+              style={{ fontFamily: "Marker Felt, fantasy" }}
+            >
               {this.props.activeBlog.title}
             </h1>
           </div>
-          <div
-            className="col-lg-6 col-sm-12"
-            style={{
-              marginTop: "3%",
-              alignSelf: "center",
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              justifyContent: "space-between"
-            }}
-          >
-            <span
-              className="col-lg-2 col-sm-12"
+          {this.props.activeBlog ? (
+            <div
+              className="col-lg-6 col-sm-12"
               style={{
+                marginTop: "3%",
+                alignSelf: "center",
                 display: "flex",
-                marginTop: "1%",
-                flexDirection: "column",
-                justifyContent: "center"
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "space-between"
               }}
             >
-              <i style={{ alignSelf: "center" }} class="fas fa-user fa-lg" />
+              <span
+                className="col-lg-2 col-sm-12"
+                style={{
+                  display: "flex",
+                  marginTop: "1%",
+                  flexDirection: "column",
+                  justifyContent: "center"
+                }}
+              >
+                <i style={{ alignSelf: "center" }} class="fas fa-user fa-lg" />
 
-              <small>Ashley Sharp</small>
-            </span>
-            <span
-              className="col-lg-2 col-sm-12"
-              style={{
-                display: "flex",
-                marginTop: "1%",
-                flexDirection: "column",
-                justifyContent: "center"
-              }}
-            >
-              <i
-                style={{ alignSelf: "center" }}
-                class="far fa-comments fa-lg"
-              />
-              <small>
-                {this.props.activeBlog.replies
-                  ? this.props.activeBlog.replies.length
-                  : 0}
-              </small>
-            </span>
-            <span
-              className="col-lg-2 col-sm-12"
-              style={{
-                display: "flex",
-                marginTop: "1%",
-                flexDirection: "column",
-                justifyContent: "center"
-              }}
-            >
-              <i style={{ alignSelf: "center" }} class="fas fa-thumbs-up" />
-              <small>
-                {this.props.activeBlog.likes ? this.props.activeBlog.likes : 0}
-              </small>
-            </span>
+                <small>Ashley Sharp</small>
+              </span>
+              <span
+                className="col-lg-2 col-sm-12"
+                style={{
+                  display: "flex",
+                  marginTop: "1%",
+                  flexDirection: "column",
+                  justifyContent: "center"
+                }}
+              >
+                <i
+                  style={{ alignSelf: "center" }}
+                  class="far fa-comments fa-lg"
+                />
+                <small>
+                  {this.props.activeBlog.replies
+                    ? this.props.activeBlog.replies.length
+                    : 0}
+                </small>
+              </span>
+              <span
+                className="col-lg-2 col-sm-12"
+                style={{
+                  display: "flex",
+                  marginTop: "1%",
+                  flexDirection: "column",
+                  justifyContent: "center"
+                }}
+              >
+                <i style={{ alignSelf: "center" }} class="fas fa-thumbs-up" />
+                <small>
+                  {this.props.activeBlog.likes
+                    ? this.props.activeBlog.likes
+                    : 0}
+                </small>
+              </span>
 
-            <span
-              className="col-lg-2 col-sm-12"
-              style={{
-                display: "flex",
-                marginTop: "1%",
-                flexDirection: "column",
-                justifyContent: "center"
-              }}
-            >
-              <i
-                style={{ alignSelf: "center" }}
-                class="far fa-calendar-alt fa-lg"
-              />
-              <small>{moment(this.props.activeBlog.time).format("l")}</small>
-            </span>
-          </div>
+              <span
+                className="col-lg-2 col-sm-12"
+                style={{
+                  display: "flex",
+                  marginTop: "1%",
+                  flexDirection: "column",
+                  justifyContent: "center"
+                }}
+              >
+                <i
+                  style={{ alignSelf: "center" }}
+                  class="far fa-calendar-alt fa-lg"
+                />
+                <small>{moment(this.props.activeBlog.time).format("l")}</small>
+              </span>
+            </div>
+          ) : null}
         </div>
 
         <img
@@ -249,15 +269,15 @@ class ReadBlog extends React.Component {
             <div className="col-12 repliesDiv">
               {this.props.activeBlog.replies &&
               this.props.activeBlog.replies.length > 1
-                ? `${this.props.activeBlog.replies.length} Responses to ${
+                ? `${this.props.activeBlog.replies.length} Responses to "${
                     this.props.activeBlog.title
-                  }`
+                  }"`
                 : this.props.activeBlog.replies &&
                   this.props.activeBlog.replies.length === 1
-                ? `${this.props.activeBlog.replies.length} Response to ${
+                ? `${this.props.activeBlog.replies.length} Response to "${
                     this.props.activeBlog.title
-                  }`
-                : `0 Responses to ${this.props.activeBlog.title}`}
+                  }"`
+                : `0 Responses to "${this.props.activeBlog.title}"`}
             </div>
             <div className="repliesDiv2" />
             {this.renderReplies()}
@@ -315,5 +335,5 @@ const mapStateToProps = ({ activeBlog, likes }) => {
 };
 export default connect(
   mapStateToProps,
-  { likePost }
+  { likePost, updateActiveBlog }
 )(ReadBlog);

@@ -58,17 +58,29 @@ const Header = props => {
         </ul>
         <ul className="navbar-nav nav-flex-icons">
           <li className="nav-item">
-            <a className="nav-link">
+            <a
+              className="nav-link"
+              href="https://www.facebook.com/mateo.solomon.16"
+              target="_blank"
+            >
               <i className="fab fa-facebook-f" />
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link">
-              <i className="fab fa-twitter" />
+            <a
+              className="nav-link"
+              href="https://github.com/0791msolomon"
+              target="_blank"
+            >
+              <i className="fab fa-github" />
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link">
+            <a
+              className="nav-link"
+              href="https://www.instagram.com/mateo_solomon/?hl=en"
+              target="_blank"
+            >
               <i className="fab fa-instagram" />
             </a>
           </li>

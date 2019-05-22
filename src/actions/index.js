@@ -6,6 +6,14 @@ export const GET_BLOGS = "GET_BLOGS";
 export const SELECT_BLOG = "SELECT_BLOG";
 export const CLEAR_BLOG = "CLEAR_BLOG";
 export const LIKE_POST = "LIKE_POST";
+export const UPDATE_ACTIVE = "UPDATE_ACTIVE";
+
+export const updateActiveBlog = blog => {
+  return {
+    type: UPDATE_ACTIVE,
+    payload: blog
+  };
+};
 
 export const likePost = id => {
   return {
@@ -33,7 +41,6 @@ export const getBlogs = async () => {
     let response = axios.get(`${base}/api/blog`);
     return {
       type: GET_BLOGS
-      // payload: response
     };
   } catch (err) {
     return {
