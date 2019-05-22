@@ -103,6 +103,7 @@ class ReadBlog extends React.Component {
     });
   };
   renderBlog = () => {
+    console.log(this.props.activeBlog);
     return (
       <div
         style={{

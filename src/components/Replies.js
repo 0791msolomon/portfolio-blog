@@ -1,7 +1,6 @@
 import React from "react";
 import moment from "moment";
 const Replies = props => {
-  console.log(props.reply);
   return (
     <div
       className="col-12"

@@ -31,7 +31,6 @@ export const getBlogs = async () => {
   try {
     let base = process.env.REACT_APP_BASEURL || "http://localhost:5000";
     let response = axios.get(`${base}/api/blog`);
-    console.log(response);
     return {
       type: GET_BLOGS
       // payload: response

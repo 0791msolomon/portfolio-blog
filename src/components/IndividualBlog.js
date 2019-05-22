@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectBlog } from "../actions";
 const IndividualBlog = props => {
-  console.log(props.info);
-
   return (
     <div
       className="col-12"
