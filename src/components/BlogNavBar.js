@@ -5,7 +5,11 @@ const BlogNavBar = props => {
     return ["Most Likes", "Most Recent", "Oldest", "Most Replies"].map(
       (item, i) => {
         return (
-          <button key={i} className="form-control col-lg-3 col-sm-12 postBtn">
+          <button
+            key={i}
+            className="form-control col-lg-3 col-sm-12 postBtn"
+            onClick={() => props.display(item)}
+          >
             {item}
           </button>
         );

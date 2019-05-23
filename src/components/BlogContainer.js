@@ -9,7 +9,7 @@ const baseUrl = process.env.REACT_APP_BASEURL || "http://localhost:5000";
 class BlogContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { blogs: [] };
+    this.state = { blogs: [], display: "mostRecent" };
   }
   componentDidMount = async () => {
     let arr = [];
@@ -34,10 +34,30 @@ class BlogContainer extends React.Component {
       );
     });
   };
+  displayOrder = order => {
+    let arr = this.state.blogs;
+    if (order === "Oldest") {
+      arr.sort((a, b) => a.time - b.time);
+      return this.setState({ blogs: arr });
+    }
+    if (order === "Most Recent") {
+      arr.sort((a, b) => b.time - a.time);
+      return this.setState({ blogs: arr });
+    }
+    if (order === "Most Likes") {
+      arr.sort((a, b) => b.likes - a.likes);
+      return this.setState({ blogs: arr });
+    }
+    if (order === "Most Replies") {
+      arr.sort((a, b) => b.replies.length - a.replies.length);
+      return this.setState({ blogs: arr });
+    }
+  };
+
   showSpinner = () => {
     return (
       <div
-        class="d-flex justify-content-center"
+        className="d-flex justify-content-center"
         style={{
           height: "200px",
           display: "flex",
@@ -46,8 +66,8 @@ class BlogContainer extends React.Component {
           flexDirection: "column"
         }}
       >
-        <div class="spinner-border text-info" role="status">
-          <span class="sr-only">Loading...</span>
+        <div className="spinner-border text-info" role="status">
+          <span className="sr-only">Loading...</span>
         </div>{" "}
         <h3>Loading Blogs...</h3>
       </div>
@@ -59,7 +79,10 @@ class BlogContainer extends React.Component {
         className=" col-12 blogContainer"
         style={{ display: "flex", flexDirection: "column", minHeight: "100%" }}
       >
-        <BlogNavBar blogs={this.state.blogs} />
+        <BlogNavBar
+          blogs={this.state.blogs}
+          display={order => this.displayOrder(order)}
+        />
         {this.state.blogs.length > 0 ? this.renderBlogs() : this.showSpinner()}
       </div>
     );

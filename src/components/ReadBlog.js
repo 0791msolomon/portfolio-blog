@@ -6,13 +6,19 @@ import { likePost, updateActiveBlog, addReply } from "../actions";
 import { ToastContainer, toast } from "react-toastify";
 import { TextArea, NameInput } from "./BlogInputs";
 import Replies from "./Replies";
+import smallAuthor from "./photos/smallAuthor.png";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
+
 class ReadBlog extends React.Component {
   constructor(props) {
     super(props);
     this.state = { reply: "", name: "", errors: {} };
   }
+  componentDidMount = () => {
+    window.scrollTo(0, 0);
+  };
+
   likePost = async e => {
     e.preventDefault();
     if (this.props.likes.includes(this.props.activeBlog._id)) {
@@ -183,12 +189,24 @@ class ReadBlog extends React.Component {
                   justifyContent: "center"
                 }}
               >
-                <i
+                {/* <i
                   style={{ alignSelf: "center" }}
                   className="fas fa-user fa-lg"
+                /> */}
+                <img
+                  src={smallAuthor}
+                  alt="ashley sharp"
+                  style={{
+                    alignSelf: "center",
+                    height: "30px",
+                    width: "30px",
+                    borderRadius: "50%"
+                  }}
                 />
 
-                <small>Ashley Sharp</small>
+                <small style={{ alignSelf: "center" }}>
+                  <b> Ashley</b>{" "}
+                </small>
               </span>
               <span
                 className="col-lg-2 col-sm-12"

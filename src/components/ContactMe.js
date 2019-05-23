@@ -68,26 +68,29 @@ class ContactMe extends React.Component {
           </div>
           <br />
           <img
-            className="col-lg-6 col-md-4 col-sm-12"
+            className="col-lg-5 col-md-4 col-sm-12"
             src={author2}
             alt="the author"
             style={{
               alignSelf: "center",
               height: "250px",
-              width: "100%",
+              width: "90%",
               borderRadius: "15%"
             }}
           />
           <br />
           <div className="col-12" style={{ alignSelf: "flex-start" }}>
-            <h5 style={{ textAlign: "left" }}>Email me at example@email.com</h5>
+            <h5 style={{ textAlign: "center" }}>
+              Email me at example@email.com
+            </h5>
           </div>
           <br />
           <div className="col-12" style={{ alignSelf: "flex-start" }}>
-            <h6 style={{ textAlign: "left" }}>So what can I do for you?</h6>
+            <h6 style={{ textAlign: "center" }}>So what can I do for you?</h6>
           </div>
           <br />
           <br />
+
           <Name
             onChange={e => this.onChange(e)}
             value={this.state.name}
@@ -106,7 +109,7 @@ class ContactMe extends React.Component {
             errors={this.state.errors}
           />
           <br />
-          <div className="col-lg-6 col-sm-12">
+          <div className="col-lg-6 col-sm-12" style={{ alignSelf: "center" }}>
             <button
               className="btn btn-info form-control"
               onClick={e => this.submit(e)}

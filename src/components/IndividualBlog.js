@@ -4,11 +4,14 @@ import "./index.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectBlog } from "../actions";
+import smallAuthor from "./photos/smallAuthor.png";
 const IndividualBlog = props => {
   return (
     <div
       className="col-12"
       style={{
+        paddingTop: "2%",
+        paddingBottom: "2%",
         minHeight: "250px",
         height: "auto",
         backgroundColor: "white",
@@ -37,12 +40,14 @@ const IndividualBlog = props => {
         <h5
           style={{
             alignSelf: "flex-start",
-            color: "#94f3ff",
+            color: "#17a2b8",
             fontWeight: "bold",
             textShadow: "1px 1px lightgray"
           }}
         >
-          {props.info.category ? props.info.category : "Default Category"}
+          &nbsp;
+          <small>{moment(props.info.time).format("ll")}</small>
+          {/* {props.info.category ? props.info.category : "Default Category"} */}
         </h5>
         <Link style={{ color: "black" }} to={`/blog/${props.info._id}`}>
           <h3
@@ -67,16 +72,18 @@ const IndividualBlog = props => {
           style={{
             display: "flex",
             flexDirection: "row",
-            flexWrap: "wrap",
             justifyContent: "space-evenly"
           }}
         >
           <span className="col-lg-3 col-sm-12">
-            <i
-              style={{ alignSelf: "flex-end" }}
-              className="fas fa-user fa-lg"
+            <img
+              src={smallAuthor}
+              alt="ashley sharp"
+              style={{ height: "30px", width: "30px", borderRadius: "50%" }}
             />
-            &nbsp; <small>Ash Sharp</small>
+            <small>
+              <b> Ashley</b>
+            </small>
           </span>
           <span className="col-lg-3 col-sm-12">
             <i className="far fa-comments fa-lg" />
@@ -90,14 +97,14 @@ const IndividualBlog = props => {
             &nbsp;
             <small>{props.info.likes ? props.info.likes : 0}</small>
           </span>
-          <span className="col-lg-3 col-sm-12">
+          {/* <span className="col-lg-3 col-sm-12">
             <i
               style={{ alignSelf: "flex-end" }}
               className="far fa-calendar-alt fa-lg"
             />
             &nbsp;
             <small>{moment(props.info.time).format("ll")}</small>
-          </span>
+          </span> */}
         </div>
       </div>
     </div>

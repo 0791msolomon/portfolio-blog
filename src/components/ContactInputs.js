@@ -3,7 +3,7 @@ import classnames from "classnames";
 
 export const Name = props => {
   return (
-    <div className="col-lg-6 col-sm-12">
+    <div className="col-lg-6 col-sm-12" style={{ alignSelf: "center" }}>
       <small style={{ float: "left" }}>Your Name *</small>
       <input
         className={classnames("form-control", {
@@ -25,7 +25,7 @@ export const Name = props => {
 
 export const Email = props => {
   return (
-    <div className="col-lg-6 col-sm-12">
+    <div className="col-lg-6 col-sm-12 " style={{ alignSelf: "center" }}>
       <small style={{ float: "left" }}>Email *</small>
       <input
         className={classnames("form-control", {
@@ -47,7 +47,7 @@ export const Email = props => {
 
 export const Message = props => {
   return (
-    <div className="col-lg-6 col-sm-12">
+    <div className="col-lg-6 col-sm-12" style={{ alignSelf: "center" }}>
       <small style={{ float: "left" }}>Message *</small>
       <textarea
         className={classnames("form-control", {
