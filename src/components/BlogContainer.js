@@ -34,6 +34,25 @@ class BlogContainer extends React.Component {
       );
     });
   };
+  showSpinner = () => {
+    return (
+      <div
+        class="d-flex justify-content-center"
+        style={{
+          height: "200px",
+          display: "flex",
+          backgroundColor: "white",
+          alignItems: "center",
+          flexDirection: "column"
+        }}
+      >
+        <div class="spinner-border text-info" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>{" "}
+        <h3>Loading Blogs...</h3>
+      </div>
+    );
+  };
   render() {
     return (
       <div
@@ -41,7 +60,7 @@ class BlogContainer extends React.Component {
         style={{ display: "flex", flexDirection: "column", minHeight: "100%" }}
       >
         <BlogNavBar blogs={this.state.blogs} />
-        {this.state.blogs.length > 0 ? this.renderBlogs() : null}
+        {this.state.blogs.length > 0 ? this.renderBlogs() : this.showSpinner()}
       </div>
     );
   }
