@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Author = props => {
   return (
     <div
+      style={{ marginTop: "10%" }}
       className=" col-12"
       // style={{
       //   display: "flex",

@@ -22,6 +22,7 @@ class App extends React.Component {
     return (
       <Provider store={createStore(rootReducer, applyMiddleware(reduxPromise))}>
         <BrowserRouter>
+          <Header />
           <div
             className="   App"
             style={{
@@ -31,7 +32,6 @@ class App extends React.Component {
               flexWrap: "nowrap"
             }}
           >
-            <Header />
             <div
               style={{ height: "100%", marginLeft: "3%", marginRight: "3%" }}
             >
