@@ -68,13 +68,13 @@ class ContactMe extends React.Component {
           </div>
           <br />
           <img
-            className="col-lg-5 col-md-4 col-sm-12"
+            className=" img-fluid"
             src={author2}
             alt="the author"
             style={{
               alignSelf: "center",
-              height: "250px",
-              width: "90%",
+              // height: "250px",
+              // width: "90%",
               borderRadius: "15%"
             }}
           />

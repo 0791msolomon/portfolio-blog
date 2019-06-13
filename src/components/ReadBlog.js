@@ -267,13 +267,12 @@ class ReadBlog extends React.Component {
         </div>
 
         <img
-          className="col-lg-6 col-sm-12"
+          className=" img-fluid"
           src={this.props.activeBlog.image}
           alt={"active blog display"}
           style={{
             paddingTop: "3%",
-            height: "300px",
-            width: "100%",
+
             alignSelf: "center"
           }}
         />

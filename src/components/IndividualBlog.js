@@ -24,8 +24,9 @@ const IndividualBlog = props => {
     >
       <div className="col-lg-3 col-sm-12" style={{ alignSelf: "center" }}>
         <img
+          className="img-fluid"
           src={props.info.image}
-          style={{ height: "150px", borderRadius: "25%", width: "100%" }}
+          style={{ borderRadius: "25%" }}
           alt="blog info"
         />
       </div>
@@ -77,6 +78,7 @@ const IndividualBlog = props => {
         >
           <span className="col-lg-3 col-sm-12">
             <img
+              className="img-fluid"
               src={smallAuthor}
               alt="ashley sharp"
               style={{ height: "30px", width: "30px", borderRadius: "50%" }}

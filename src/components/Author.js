@@ -17,7 +17,8 @@ const Author = props => {
       <h2 className="col-lg-12 author">Meet the Author</h2>
       <div className="col-12">
         <img
-          style={{ height: "350px", width: "100%", borderRadius: "15%" }}
+          className="img-fluid"
+          style={{ borderRadius: "15%" }}
           src={author}
           alt="the author"
         />
